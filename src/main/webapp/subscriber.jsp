@@ -1,3 +1,4 @@
+
 <%@page import="java.util.Date"%>
 <%@page import="org.apache.activemq.ActiveMQConnection"%>
 <%@page import="javax.jms.Message"%>
@@ -10,6 +11,7 @@
 <%@page import="org.apache.log4j.BasicConfigurator"%>
 <%@page import="javax.jms.ConnectionFactory"%>
 <%@ page import="java.io.*"  %>
+<!Doctype HTML>
 <%
 String subject ="TPLO54";
 String url = ActiveMQConnection.DEFAULT_BROKER_URL;
@@ -18,6 +20,7 @@ String endWhile;
 String windowsPath = "C:/ProjetLO54";
 String linuxPath = "/home/ProjetLO54";
 String osName = System.getProperty ( "os.name" );
+String temp = "";
 
 BasicConfigurator.configure();
 
@@ -76,12 +79,13 @@ BasicConfigurator.configure();
         while(endWhile.equals("no")){
         Message message = consumer.receive();
         if (message instanceof TextMessage) {
-
+            
             TextMessage textMessage = (TextMessage) message;
             System.out.println("Received message '" + textMessage.getText()+ "'");
             //write the message and \n in the log file
             logFile.write(textMessage.getText());
             logFile.write(System.getProperty("line.separator"));
+            temp = temp +"<br />"+textMessage.getText()+System.getProperty("line.separator");
             if(textMessage.getText().equals("close connection")){
                 endWhile="true";
             }
@@ -91,5 +95,16 @@ BasicConfigurator.configure();
         logFile.write("------------- Stop listening  : "+new Date().toString()+ " -------------");
         logFile.close();
         connection.close();
+    System.out.println(temp);%>
+    <html>
+        <head><title> listener</title></head>
+        
+        <body>
 
-%>
+            <div onclick="javascript_alert_demo()">Récapitulatif des messages reçus : <br /> <%=temp%></div>
+            <br />
+            <input type="button" name="b10" value="Return Home Page" onclick="location.href='index.html'"><br />
+        </body>
+            
+ </html>
+        
