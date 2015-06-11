@@ -32,6 +32,7 @@
                 <%= request.getParameter("city")%>
             </p></li>
         </ul>
-
+        <br />
+        <input type="button" name="b10" value="Return Home Page" onclick="location.href='index.html'"><br />
     </body>
 </html>
