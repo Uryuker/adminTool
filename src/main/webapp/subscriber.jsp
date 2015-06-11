@@ -11,7 +11,6 @@
 <%@page import="javax.jms.ConnectionFactory"%>
 <%@ page import="java.io.*"  %>
 <%
-String str = "print me";
 String subject ="TPLO54";
 String url = ActiveMQConnection.DEFAULT_BROKER_URL;
 String filePath = "WebLogFile.txt";
