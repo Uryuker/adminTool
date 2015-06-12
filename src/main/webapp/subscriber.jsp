@@ -18,7 +18,7 @@ String url = ActiveMQConnection.DEFAULT_BROKER_URL;
 String filePath = "WebLogFile.txt";
 String endWhile;
 String windowsPath = "C:/ProjetLO54";
-String linuxPath = "/home/ProjetLO54";
+String linuxPath = "/home/java/Desktop/ProjetLO54";
 String osName = System.getProperty ( "os.name" );
 String temp = "";
 
