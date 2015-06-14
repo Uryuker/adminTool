@@ -4,6 +4,8 @@
     Author     : Quentin Barthélémy
 
 --%>
+<%@page import="fr.utbm.projetlo54.service.LocationService"%>
+<%@page import="java.util.List"%>
 <%@page import="fr.utbm.projetlo54.repository.HibernateLocationDAO"%>
 <%@page import="fr.utbm.projetlo54.entity.Location"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -11,10 +13,11 @@
 <%
     Location l = new Location();
     l.setCity(request.getParameter("city"));
-    l.setId(Integer.parseInt(request.getParameter("id")));
-    HibernateLocationDAO h = new HibernateLocationDAO();
-    h.addLocation(l);
+    new HibernateLocationDAO().addLocation(l);
     
+    
+   
+
     %>
 <!DOCTYPE html>
 <html>
@@ -25,12 +28,15 @@
 
         <h1>Location added :</h1>
         <ul>
-            <li><p><b>Id:</b>
-                <%= request.getParameter("id")%>
-            </p></li>
+
             <li><p><b>City :</b>
                 <%= request.getParameter("city")%>
             </p></li>
+            <li><p><b>Location existing :</b>
+                <% List<Location> locations = new LocationService().getAllLocations();
+                out.println(locations.toString());%>
+                    
+            
         </ul>
         <br />
         <input type="button" name="b10" value="Return to Home Page" onclick="location.href='index.html'"><br />
