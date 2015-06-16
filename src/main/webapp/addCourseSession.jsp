@@ -4,6 +4,12 @@
     Author     : Quentin Barthélémy
 --%>
 
+<%@page import="java.util.List"%>
+<%@page import="java.util.Set"%>
+<%@page import="java.util.Date"%>
+<%@page import="fr.utbm.projetlo54.repository.HibernateLocationDAO"%>
+<%@page import="fr.utbm.projetlo54.repository.HibernateCourseDAO"%>
+<%@page import="fr.utbm.projetlo54.entity.Course"%>
 <%@page import="fr.utbm.projetlo54.entity.Location"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="fr.utbm.projetlo54.entity.CourseSession"%>
@@ -12,15 +18,18 @@
 
 <%
     CourseSession cs = new CourseSession();
-    cs.setId(Integer.parseInt(request.getParameter("id")));
-    cs.setStartDate(new SimpleDateFormat("dd/MM/yy").parse(request.getParameter("start_date")));
-    cs.setEndDate(new SimpleDateFormat("dd/MM/yy").parse(request.getParameter("end_date")));
-    Location l = new Location();
-    l.setCity(request.getParameter("location"));
-    l.setId(Integer.parseInt(request.getParameter("location_id")));
-    cs.setLocation(l);
-    HibernateCourseSessionDAO h = new HibernateCourseSessionDAO();
-    h.addCourseSession(cs);
+    SimpleDateFormat formater = new SimpleDateFormat("yyyy-MM-dd");
+    String startDate = request.getParameter("start_date");
+    Date result = formater.parse(startDate);
+    cs.setStartDate(result);
+    String endDate = request.getParameter("end_date");
+    result = formater.parse(endDate);
+    cs.setEndDate(result);
+
+    cs.setCourse(request.getParameter("course"));
+    cs.setLocation(Integer.parseInt(request.getParameter("location")));
+    cs.setId(2);
+    new HibernateCourseSessionDAO().addCourseSession(cs);
     %>
 <!DOCTYPE html>
 <html>
@@ -32,20 +41,18 @@
 
         <h1>CourseSession added :</h1>
         <ul>
-            <li><p><b>Id:</b>
-                <%= request.getParameter("id")%>
-            </p></li>
             <li><p><b>Start Date:</b>
                 <%= request.getParameter("start_date")%>
             </p></li>
             <li><p><b>End Date:</b>
                 <%= request.getParameter("end_date")%>
             </p></li>
-            <li><p><b>LocationID :</b>
-                <%= request.getParameter("location_id")%>
+            <li><p><b>Course:</b>
+                <%= request.getParameter("course") %> 
+                    
             </p></li>
             <li><p><b>Location :</b>
-                <%= request.getParameter("location")%>
+                <%= request.getParameter("location")%> 
             </p></li>
         </ul>
         <br />

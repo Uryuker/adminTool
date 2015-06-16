@@ -2,9 +2,22 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Add Location</title>
+        <link rel="stylesheet" type="text/css" href="styles.css">
     </head>
     <body>
-       
+        <div id="tabs">
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="addClient.html" >Add Client</a></li>
+                <li><a href="addCourse.html" >Add Course</a></li>
+                <li><a href="addCourseSession.html" >Add Course Session</a></li>
+                <li><a href="addLocation.html" class="selected">Add Location</a></li>
+                <li><a href="subscriber.html" >ActiveMQ Listener</a></li>
+            </ul>
+        </nav>
+        </div>
+       <section>
         <form action="addLocation.jsp" method="GET">
             
             <h1> Location Informations : </h1>
@@ -15,5 +28,6 @@
         </form>
         <br />
         <input type="button" name="b10" value="Cancel" onclick="location.href='index.html'"><br />
-    </body>
+        </section>
+       </body>
 </html>

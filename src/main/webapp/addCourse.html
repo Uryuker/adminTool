@@ -4,9 +4,22 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Add Course</title>
+        <link rel="stylesheet" type="text/css" href="styles.css">
     </head>
     <body>
-       
+        <div id="tabs">
+        <nav>
+            <ul>
+                <li><a href="index.html" >Home</a></li>
+                <li><a href="addClient.html" >Add Client</a></li>
+                <li><a href="addCourse.html" class="selected">Add Course</a></li>
+                <li><a href="addCourseSession.html" >Add Course Session</a></li>
+                <li><a href="addLocation.html" >Add Location</a></li>
+                <li><a href="subscriber.html" >ActiveMQ Listener</a></li>
+            </ul>
+        </nav>
+        </div>
+        <section>
         <form action="addCourse.jsp" method="GET">
             <h1> Course Informations : </h1>
             <br />
@@ -18,5 +31,6 @@
         </form>
         <br /><br /><br />
         <input type="button" name="b10" value="Cancel" onclick="location.href='index.html'"><br />
+        </section>
     </body>
 </html>

@@ -9,18 +9,32 @@ and open the template in the editor.
         <title>Admin page</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="styles.css">
     </head>
     <body>
-        <h1>Administration tools</h1><br />
-        <input type="button" name="b1" value="Add new course" onclick="location.href='addCourse.html'"><br />
-        <input type="button" name="b5" value="Add new client" onclick="location.href='addClient.html'"><br />
-        <input type="button" name="b3" value="Add new location" onclick="location.href='addLocation.html'"><br />
-        <input type="button" name="b2" value="Add new course session" onclick="location.href='addCourseSession.html'"><br />
+        <div id="tabs">
+        <nav>
+            <ul>
+                <li><a href="index.html" class="selected">Home</a></li>
+                <li><a href="addClient.html" >Add Client</a></li>
+                <li><a href="addCourse.html" >Add Course</a></li>
+                <li><a href="addCourseSession.html" >Add Course Session</a></li>
+                <li><a href="addLocation.html" >Add Location</a></li>
+                <li><a href="subscriber.html" >ActiveMQ Listener</a></li>
+            </ul>
+        </nav>
+        </div>
+        <section>
+ 
+        <h1>Welcome to the administration page</h1><br />
+        <a>Here you can enter entries in the Database or start the web listener on the ActiveMQ Topic.</a><br/>
+        <a>I let you choose what you can do by clicking on the corresponding tab !</a><br/><br/><br/>
+        <img src="ActiveMQ.png" alt="ActiveMQ"/>
         
-        <h1>ActiveMQ tools</h1><br />
-        <input type="button" name="b4" value="ActiveMQ Listener" onclick="location.href='subscriber.html'"><br />
-
-      
+        <img src="logo-utbm.jpg" alt="UTBM" height="114"/><br/><br/>
+        
+        <a>This application has been created for LO54 Module at UTBM</a>
+        </section>
     
     </body>
 </html>

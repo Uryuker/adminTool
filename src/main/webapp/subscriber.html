@@ -3,6 +3,8 @@
     <head>
         <title>ActiveMQ Listener</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        
+        <link rel="stylesheet" type="text/css" href="styles.css">
         <script>
         function setDisplayed() {
             document.getElementById("loader").style.display = "inline";
@@ -10,6 +12,19 @@
         </script>
     </head>
     <body>
+        <div id="tabs">
+        <nav>
+            <ul>
+                <li><a href="index.html" >Home</a></li>
+                <li><a href="addClient.html" >Add Client</a></li>
+                <li><a href="addCourse.html">Add Course</a></li>
+                <li><a href="addCourseSession.html" >Add Course Session</a></li>
+                <li><a href="addLocation.html" >Add Location</a></li>
+                <li><a href="subscriber.html" class="selected">ActiveMQ Listener</a></li>
+            </ul>
+        </nav>
+        </div>
+       <section>
         <h1>Durable web Subscriber</h1>
         
         <a onclick="setDisplayed()" href="subscriber.jsp" >Let's begin listening</a>
@@ -20,5 +35,6 @@
         <br />
         <br />
         <input type="button" name="b10" value="Cancel" onclick="location.href='index.html'"><br />
+       </section>
     </body>
 </html>
