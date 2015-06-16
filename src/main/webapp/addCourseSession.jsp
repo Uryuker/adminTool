@@ -18,7 +18,7 @@
 
 <%
     CourseSession cs = new CourseSession();
-    SimpleDateFormat formater = new SimpleDateFormat("yyyy-MM-dd");
+    SimpleDateFormat formater = new SimpleDateFormat("dd/MM/yyyy");
     String startDate = request.getParameter("start_date");
     Date result = formater.parse(startDate);
     cs.setStartDate(result);
