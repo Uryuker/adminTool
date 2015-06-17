@@ -16,7 +16,8 @@
 String subject ="TPLO54";
 String url = ActiveMQConnection.DEFAULT_BROKER_URL;
 String filePath = "WebLogFile.txt";
-String endWhile;
+boolean endWhile=false;
+boolean removeSub=false;
 String windowsPath = "C:/ProjetLO54";
 String linuxPath = "/home/java/Desktop/ProjetLO54";
 String osName = System.getProperty ( "os.name" );
@@ -75,8 +76,7 @@ BasicConfigurator.configure();
         
         // Waiting for the message
 
-        endWhile="no";
-        while(endWhile.equals("no")){
+        while(!endWhile){
         Message message = consumer.receive();
         if (message instanceof TextMessage) {
             
@@ -87,13 +87,24 @@ BasicConfigurator.configure();
             logFile.write(System.getProperty("line.separator"));
             temp = temp +"<br />"+textMessage.getText()+System.getProperty("line.separator");
             if(textMessage.getText().equals("close connection")){
-                endWhile="true";
+                endWhile=true;
+            }
+            //If we received remove subscrbers the we remove durable subscribers
+            else if(textMessage.getText().equals("remove subscribers")){
+                removeSub=true;
+                endWhile=true;
             }
         }
         }
         //Signifiacte the end of he listening with the date
         logFile.write("------------- Stop listening  : "+new Date().toString()+ " -------------");
         logFile.close();
+        //If we received remove subscrbers the we remove durable subscribers
+        if(removeSub){
+            consumer.close();
+            subscriberSession.unsubscribe("AppliJava");
+            subscriberSession.close();
+        }
         connection.close();
     System.out.println(temp);%>
     <html>
