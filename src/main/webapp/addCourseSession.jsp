@@ -18,16 +18,19 @@
 
 <%
     CourseSession cs = new CourseSession();
-    SimpleDateFormat formater = new SimpleDateFormat("dd/MM/yyyy");
+    SimpleDateFormat formater = new SimpleDateFormat("yyyy-MM-dd");
     String startDate = request.getParameter("start_date");
     Date result = formater.parse(startDate);
     cs.setStartDate(result);
     String endDate = request.getParameter("end_date");
     result = formater.parse(endDate);
     cs.setEndDate(result);
-
-    cs.setCourse(request.getParameter("course"));
-    cs.setLocation(Integer.parseInt(request.getParameter("location")));
+    Course cours = new Course();
+    cours.setTitle(request.getParameter("course"));
+    cs.setCourse(cours);
+    Location loc = new Location();
+    loc.setId(Integer.parseInt(request.getParameter("location")));
+    cs.setLocation(loc);
     cs.setId(2);
     new HibernateCourseSessionDAO().addCourseSession(cs);
     %>
