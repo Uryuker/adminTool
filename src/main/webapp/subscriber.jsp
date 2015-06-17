@@ -57,8 +57,6 @@ BasicConfigurator.configure();
                 filePath= linuxPath+"/"+filePath;
             }
         }
-
-
         //Check if the file already exists
         //If not, we create one else we append to the existing one and insert new line
         FileWriter logFile;
@@ -86,13 +84,14 @@ BasicConfigurator.configure();
             logFile.write(textMessage.getText());
             logFile.write(System.getProperty("line.separator"));
             temp = temp +"<br />"+textMessage.getText()+System.getProperty("line.separator");
-            if(textMessage.getText().equals("close connection")){
-                endWhile=true;
-            }
-            //If we received remove subscrbers the we remove durable subscribers
-            else if(textMessage.getText().equals("remove subscribers")){
-                removeSub=true;
-                endWhile=true;
+            switch (textMessage.getText()) {
+                case "close connection":
+                    endWhile=true;
+                    break;
+                case "remove subscribers":
+                    removeSub=true;
+                    endWhile=true;
+                    break;
             }
         }
         }
