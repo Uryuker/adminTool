@@ -4,6 +4,7 @@
     Author     : Quentin Barthélémy
 --%>
 
+<%@page import="fr.utbm.projetlo54.service.CourseSessionService"%>
 <%@page import="fr.utbm.projetlo54.entity.CourseSession"%>
 <%@page import="fr.utbm.projetlo54.repository.HibernateClientDAO"%>
 <%@page import="fr.utbm.projetlo54.entity.Client"%>
@@ -16,11 +17,11 @@
     cl.setAddress(request.getParameter("address"));
     cl.setPhone(request.getParameter("phone"));
     cl.setEmail(request.getParameter("mail"));
-    cl.setSessionID(Integer.parseInt(request.getParameter("session_id")));
+    CourseSessionService css = new CourseSessionService();
+    CourseSession courseSession = css.getCourseSessionById(Integer.parseInt(request.getParameter("session_id")));
+    cl.setSession(courseSession);
     new HibernateClientDAO().addClient(cl);
-    
-    
-    
+
     %>
 <!DOCTYPE html>
 <html>
@@ -31,22 +32,22 @@
 
         <h1>Client added :</h1>
         <ul>
-            <li><p><b>First Name : </b>
+            <li><p><b>First Name: </b>
                 <%= request.getParameter("first_name")%>
             </p></li>
-            <li><p><b>Last Name : </b>
+            <li><p><b>Last Name: </b>
                 <%= request.getParameter("last_name")%>
             </p></li>
-            <li><p><b>Address : </b>
+            <li><p><b>Address: </b>
                 <%= request.getParameter("address")%>
             </p></li>
-            <li><p><b>Phone : </b>
+            <li><p><b>Phone: </b>
                 <%= request.getParameter("phone")%>
             </p></li>
-            <li><p><b>Mail : </b>
+            <li><p><b>Mail: </b>
                 <%= request.getParameter("mail")%>
             </p></li>
-            <li><p><b>Session : </b>
+            <li><p><b>Session: </b>
                 <%= request.getParameter("session_id")%> 
                    
             </p></li>

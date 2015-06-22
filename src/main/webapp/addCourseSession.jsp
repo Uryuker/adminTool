@@ -4,6 +4,9 @@
     Author     : Quentin Barthélémy
 --%>
 
+<%@page import="fr.utbm.projetlo54.service.CourseSessionService"%>
+<%@page import="fr.utbm.projetlo54.service.LocationService"%>
+<%@page import="fr.utbm.projetlo54.service.CourseService"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.Set"%>
 <%@page import="java.util.Date"%>
@@ -17,7 +20,10 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <%
+    // create the new course session
     CourseSession cs = new CourseSession();
+    
+    // set its start and end dates
     SimpleDateFormat formater = new SimpleDateFormat("yyyy-MM-dd");
     String startDate = request.getParameter("start_date");
     Date result = formater.parse(startDate);
@@ -25,14 +31,21 @@
     String endDate = request.getParameter("end_date");
     result = formater.parse(endDate);
     cs.setEndDate(result);
-    Course cours = new Course();
-    cours.setTitle(request.getParameter("course"));
-    cs.setCourse(cours);
-    Location loc = new Location();
-    loc.setId(Integer.parseInt(request.getParameter("location")));
+    
+    // set its course
+    CourseService cservice = new CourseService();
+    Course course = cservice.getCourseByCode(request.getParameter("course"));
+    cs.setCourse(course);
+    course.addCourseSession(cs);
+    
+    // set its location
+    LocationService lservice = new LocationService();
+    Location loc = lservice.getLocation(Integer.parseInt(request.getParameter("location")));
     cs.setLocation(loc);
-    cs.setId(2);
-    new HibernateCourseSessionDAO().addCourseSession(cs);
+
+    CourseSessionService css = new CourseSessionService();
+    css.insertCourseSession(cs);
+    
     %>
 <!DOCTYPE html>
 <html>

@@ -26,13 +26,13 @@
     </head>
     <body>
 
-        <h1>Location added :</h1>
+        <h1>Location added:</h1>
         <ul>
 
-            <li><p><b>City :</b>
+            <li><p><b>City:</b>
                 <%= request.getParameter("city")%>
             </p></li>
-            <li><p><b>Location existing :</b>
+            <li><p><b>Existing locations:</b>
                 <% List<Location> locations = new LocationService().getAllLocations();
                 out.println(locations.toString());%>
                     

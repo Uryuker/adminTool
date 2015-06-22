@@ -22,12 +22,12 @@
         <title>Course added</title>
     </head>
     <body>
-        <h1> Course added :</h1>
+        <h1> Course added:</h1>
         <ul>
-            <li><p><b>Code :</b>
+            <li><p><b>Code:</b>
                 <%= request.getParameter("code")%>
             </p></li>
-            <li><p><b>Title :</b>
+            <li><p><b>Title:</b>
                 <%= request.getParameter("title")%>
             </p></li>
         </ul>
