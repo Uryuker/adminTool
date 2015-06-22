@@ -29,7 +29,7 @@ BasicConfigurator.configure();
         ConnectionFactory connectionFactory = new ActiveMQConnectionFactory(url);
         Connection connection = connectionFactory.createConnection();
         //Set the ID of the subscriber
-        connection.setClientID("2");
+        connection.setClientID("20");
         connection.start();
         // Creating session for seding messages
         Session subscriberSession = connection.createSession(false,Session.AUTO_ACKNOWLEDGE);

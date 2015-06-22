@@ -39,7 +39,7 @@ public static void main(String[] args) throws  IOException,NamingException,JMSEx
         ConnectionFactory connectionFactory = new ActiveMQConnectionFactory(url);
         Connection connection = connectionFactory.createConnection();
         //Set the ID of the subscriber
-        connection.setClientID("1");
+        connection.setClientID("11");
         connection.start();
         // Creating session for seding messages
         Session session = connection.createSession(false,Session.AUTO_ACKNOWLEDGE);
@@ -53,7 +53,7 @@ public static void main(String[] args) throws  IOException,NamingException,JMSEx
         
 
         if(osName.matches(".*Windows.*")){
-            //Create the directory in windows if not eists
+            //Create the directory in windows if not exists
             if( !new File(windowsPath).exists()){
                 new File(windowsPath).mkdir();
                 System.out.println("Created "+ windowsPath+ " directory");
@@ -63,7 +63,7 @@ public static void main(String[] args) throws  IOException,NamingException,JMSEx
         
         else{
             if(osName.matches(".*Linux.*")){
-                //Create the directory in linux if not eists
+                //Create the directory in linux if not exists
                 if( !new File(linuxPath).mkdirs()){
                     new File(linuxPath).mkdir();
                     System.out.println("Created" + linuxPath+ " directory");
